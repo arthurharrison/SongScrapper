@@ -12,6 +12,15 @@ def newTrie(*words):
             
     return tree
 
+def getValue(trie):
+    currentDict = trie
+    raiz = list(currentDict)
+    for i in range(len(raiz)): #percorrer todos os nos
+
+
+        #parei de programar pois percebi que devera ser algo recursivo e nao forçar com loops :(
+    
+
 
 #Function that adds words in a already existed Trie's Tree
 #It works very similar to the creation of a new Tree's
