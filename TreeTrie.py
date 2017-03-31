@@ -33,7 +33,6 @@ def addTrie(trie,*words):
             
     return currentDic #Returns the Trie's Tree
         
-
 #you need to pass the Trie Tree and the word you are looking for
 def inTrie(trie, word):
     currentDict = trie
@@ -69,13 +68,11 @@ def remTrie(trie,word):
     #print(trie) Debug
     return trie
             
-            
-            
+             
     
 arvore = newTrie('bahea','salvado','salvador','sal','sal','bahea','bahia','sergipe')
 print(arvore)
 arvore = addTrie(arvore,'banana','presunto','bahia')
-print('\n\n\n\n')
 print(arvore)
 #print(inTrie(arvore,'ser'))
 #teste = remTrie(arvore,'salvador')
