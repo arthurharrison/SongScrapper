@@ -14,6 +14,26 @@ def newTrie(*words):
             
     return tree
 
+
+#Function that adds words in a already existed Trie's Tree
+#It works very similar to the creation of a new Tree's
+def addTrie(trie,*words):
+    currentDic = trie #It  receives the Tree's to a variable that will change
+    for word in words:
+        currentDict = currentDic #CurrentDic will bet the variable that is going to get in the Dictonary
+        for letter in word:
+            if(letter in currentDict):
+                currentDict = currentDict[letter] #This will enable that if the letter already exists it will just get in it, NOT CREATE A NEW
+            else:
+                currentDict = currentDict.setdefault(letter,{}) #And if not, it will Create one
+        if('value' in currentDict): 
+            currentDict['value'] = currentDict['value'] + 1  #If for some reason the word already exists, it will only Add +1 to the Counter
+        else:
+            currentDict['value'] = 1 #If not, it will create the Counter
+            
+    return currentDic #Returns the Trie's Tree
+        
+
 #you need to pass the Trie Tree and the word you are looking for
 def inTrie(trie, word):
     currentDict = trie
@@ -50,13 +70,13 @@ def remTrie(trie,word):
     return trie
             
             
-                
-                
-
-    
+            
     
 arvore = newTrie('bahea','salvado','salvador','sal','sal','bahea','bahia','sergipe')
-#print(arvore)
+print(arvore)
+arvore = addTrie(arvore,'banana','presunto','bahia')
+print('\n\n\n\n')
+print(arvore)
 #print(inTrie(arvore,'ser'))
 #teste = remTrie(arvore,'salvador')
 #print(teste)
