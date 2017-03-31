@@ -1,6 +1,4 @@
-value = 0 #unnecessary
 def newTrie(*words):
-    #print(words) #debug
     tree = dict() #the tree as a dictionary
     for word in words:
         currentDict = tree
@@ -53,27 +51,32 @@ def inTrie(trie, word):
 
 #remover
 #In Progress
-def remTrie(trie,word):
-    currentDict = trie
-    for letter in word:
-        if(letter in currentDict): #it will run until the last letter found
-            currentDict = currentDict[letter]
-    else:
-        if('value' in currentDict): # the last letter of a phrase
-            if(len(currentDict) == 1):
-                del[currentDict['value']]
-            elif(len(currentDict) > 1):
-                del[currentDict['value']]
-    #print(currentDict)
-    #print(trie) Debug
-    return trie
+def remTrie(trie,*words):
+    currentDic = trie
+    for word in words:
+        currentDict = currentDic
+        for letter in word:
+            if(letter in currentDict): #it will run until the last letter found
+                currentDict = currentDict[letter]
+        else:
+            if('value' in currentDict): # the last letter of a phrase
+                if(len(currentDict) == 1):
+                    del[currentDict['value']]
+                    #del[currentDict]
+                elif(len(currentDict) > 1):
+                    del[currentDict['value']]
+                    
+    return currentDic
             
-             
-    
+
+#DEBUGER - OUTPUT             
 arvore = newTrie('bahea','salvado','salvador','sal','sal','bahea','bahia','sergipe')
 print(arvore)
 arvore = addTrie(arvore,'banana','presunto','bahia')
+print('\n\n\n')
 print(arvore)
-#print(inTrie(arvore,'ser'))
-#teste = remTrie(arvore,'salvador')
-#print(teste)
+arvore = remTrie(arvore,'salvador','salvado')
+print('\n\n\n')
+print(arvore)
+print(inTrie(arvore,'ser'))
+print(inTrie(arvore,'presunto'))
