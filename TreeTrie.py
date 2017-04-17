@@ -12,11 +12,43 @@ def newTrie(*words):
             
     return tree
 
+def getValues(trie):
+    currentDict = trie
+    raiz = list(currentDict)
+    if(raiz[0] != 'value' and len(raiz) > 0):
+        for i in range(len(raiz)):
+            percorre(raiz[i])
+        
+def percorra2(trie):
+    aux = list(trie)
+    while ( aux[0] != 'value' and len(aux) > 0):
+        percorra2(trie(aux[0]))
+global teste
+teste = []
+global tete
+tete = ''
+def percorra(trie):
+    aux = list(trie)
+    #teste = []
+    global tete
+    for i in range(len(aux)):
+        #teste.append(aux[i])
+        
+        #print(tete)
+        if(aux[i] == "value"):
+            print(tete)
+            tete = ''
+            print('ta aqui  ')
+            continue
+        tete += aux[i]
+        percorra(trie[aux[i]]) 
+    
+
 def getValue(trie):
     currentDict = trie
     raiz = list(currentDict)
     for i in range(len(raiz)): #percorrer todos os nos
-
+        return False #tirar
 
         #parei de programar pois percebi que devera ser algo recursivo e nao forçar com loops :(
     
@@ -89,3 +121,4 @@ print('\n\n\n')
 print(arvore)
 print(inTrie(arvore,'ser'))
 print(inTrie(arvore,'presunto'))
+print(percorra(arvore))
