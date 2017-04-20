@@ -56,6 +56,7 @@ def percorra(trie):
         #print(inTrie(trie,tete))
         
         tete = aux[i]
+        teste.append(tete)
         if(inTrie(trie,tete)):
             teste.append(tete)
             print(teste)
@@ -69,6 +70,15 @@ def percorra(trie):
             continue
         percorra(trie[aux[i]]) 
 
+def percorraTor(trie,lista):
+    tec = []
+    while 'value' in lista:
+        lista.remove('value')
+    for i in range(len(lista)):
+        if(inTrie(trie,lista[i])):
+            tec.append(lista[i])
+        
+    return tec
 
 #
 
@@ -104,3 +114,6 @@ print(inTrie(a,'natali'))
 print(inTrie(a,'b'))
 print(inTrie(a,'sal'))
 percorra(a)
+teste = percorraTor(a,teste)
+print(teste)
+print(len(teste))
