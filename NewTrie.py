@@ -81,6 +81,22 @@ def percorraTor(trie,lista):
     return tec
 
 #
+def getVal(trie,word):
+    if(not(inTrie(trie,word))):
+        return 0
+    currentDict = trie
+    c = ''
+    for letter in word:
+        c = c + letter
+        if(c in currentDict):
+            currentDict = currentDict[c]
+        else:
+            return 0
+    if('value' in currentDict):
+        return currentDict['value']
+    else:
+        return 0
+
 
 #you need to pass the Trie Tree and the word you are looking for
 def inTrie(trie, word):
@@ -117,3 +133,4 @@ percorra(a)
 teste = percorraTor(a,teste)
 print(teste)
 print(len(teste))
+print(getVal(a,'salv'))
