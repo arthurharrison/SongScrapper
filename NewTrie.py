@@ -97,6 +97,12 @@ def getVal(trie,word):
     else:
         return 0
 
+def getAll(trie,lista):
+    listona = []
+    for i in range(len(lista)):
+        if(inTrie(trie,lista[i])):
+            listona.append(getVal(trie,lista[i]))
+    return listona
 
 #you need to pass the Trie Tree and the word you are looking for
 def inTrie(trie, word):
@@ -134,3 +140,4 @@ teste = percorraTor(a,teste)
 print(teste)
 print(len(teste))
 print(getVal(a,'salv'))
+print(getAll(a,teste))
