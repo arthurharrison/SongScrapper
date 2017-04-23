@@ -34,42 +34,33 @@ def addTrie(trie,*words):
             
     return currentDic #Returns the Trie's Tree
 
-#
 global teste
 teste = []
+
 global tete
 tete = ''
+
+
 def percorra(trie):
     aux = list(trie)
-    #dictonon = trie
-    #teste = []
     global tete
     for i in range(len(aux)):
-        #teste.append(aux[i])
         if(len(aux) == 1 and 'value' in aux):
             continue
-        if('value' in aux):
-            #print(tete)
+        if('value' in aux):#if it encounters a 'word' it resets the counter
             tete = ''
-            #print('ta aqui  ')
-            #continue
-        #print(inTrie(trie,tete))
         
         tete = aux[i]
         teste.append(tete)
-        if(inTrie(trie,tete)):
-            teste.append(tete)
-            print(teste)
-        print(tete)
         
-        
-            
-        #print(trie)
-        #print(inTrie(trie,tete))
+        #print(tete)#debugger
+        #print(trie) #debugger
+        #print(inTrie(trie,tete))#debugger
         if(type(trie[aux[i]]) == int): #or type(aux[i]) == int):
             continue
-        percorra(trie[aux[i]]) 
+        percorra(trie[aux[i]])
 
+#creates a list with all the itens found in the tree with value
 def percorraTor(trie,lista):
     tec = []
     while 'value' in lista:
@@ -80,7 +71,7 @@ def percorraTor(trie,lista):
         
     return tec
 
-#
+#It gets a value of a word
 def getVal(trie,word):
     if(not(inTrie(trie,word))):
         return 0
@@ -96,7 +87,8 @@ def getVal(trie,word):
         return currentDict['value']
     else:
         return 0
-
+#It get all values of all words and returns a list with all the values
+#reomember to compare with the entry list, because it save only the values
 def getAll(trie,lista):
     listona = []
     for i in range(len(lista)):
@@ -124,8 +116,7 @@ def inTrie(trie, word):
         else:
             return False
 
-
-
+#Testing the Code
 
 a = newTrie('bahea','bahea','salvado','salvador','sal','sal','bahia','sergipe')
 print(a)
