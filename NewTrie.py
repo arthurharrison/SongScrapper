@@ -34,16 +34,16 @@ def addTrie(trie,*words):
             
     return currentDic #Returns the Trie's Tree
 
-global teste
+#global teste
 teste = []
 
-global tete
-tete = ''
+#global tete
+#tete = ''
 
 
 def percorra(trie):
     aux = list(trie)
-    global tete
+    tete = ''
     for i in range(len(aux)):
         if(len(aux) == 1 and 'value' in aux):
             continue
@@ -119,14 +119,18 @@ def inTrie(trie, word):
 #Testing the Code
 
 a = newTrie('bahea','bahea','salvado','salvador','sal','sal','bahia','sergipe')
+#a = newTrie() This means it can work with nothing
 print(a)
+print('\n\n')
 a = addTrie(a,'baba','salvei','presente','natal','natal','natalino')
 print(a)
+print('\n')
 print(inTrie(a,'baba'))
 print(inTrie(a,'natali'))
 print(inTrie(a,'b'))
 print(inTrie(a,'sal'))
 percorra(a)
+print('\n',teste,'\n')
 teste = percorraTor(a,teste)
 print(teste)
 print(len(teste))
