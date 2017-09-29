@@ -1,13 +1,12 @@
 class TreeTrie:
     #---------------
-    #Do I Have something to say?
+    #Developer Observation:
     #CurrentDict = the variable that is going to get in the Dictonary and explore every branch of it
     #progLetter = is the Progression of the word, it starts with the first letter and in the end will be the whole word
     #
     #--------------
 
-    """
-        This Class is a TreeTrie (as the name says)
+    """This Class is a TreeTrie (as the name says)
 
         You can Enter with N words or even with none, and it will create a Tree on your given object
 
@@ -19,7 +18,7 @@ class TreeTrie:
     """
 
     def __init__(self, *words):
-        tree = dict() #the tree as a dictionary
+        tree = dict()
 
         for word in words:
             currentDict = tree
@@ -32,7 +31,7 @@ class TreeTrie:
             else:
                 currentDict['value'] = 1
 
-        self.tree = tree #ATTENTION
+        self.tree = tree
 
 
     def addTrie(self,*words):
@@ -78,9 +77,6 @@ class TreeTrie:
             tete = aux[i]
             teste.append(tete)
             
-            #print(tete)#debugger
-            #print(trie) #debugger
-            #print(inTrie(trie,tete))#debugger
             if(type(self.tree[aux[i]]) == int): #or type(aux[i]) == int):
                 continue
             return self.percorra(self.tree[aux[i]])
