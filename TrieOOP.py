@@ -6,6 +6,18 @@ class TreeTrie:
     #
     #--------------
 
+    """
+        This Class is a TreeTrie (as the name says)
+
+        You can Enter with N words or even with none, and it will create a Tree on your given object
+
+        Functions in this class:
+            addTrie: Adds Words in the Tree
+            getVal: Gets a value of the given word
+            getAll: Get all values of all words and returns a list with all the values
+            inTrie: Check if the word given is in the Tree
+    """
+
     def __init__(self, *words):
         tree = dict() #the tree as a dictionary
 
@@ -23,9 +35,15 @@ class TreeTrie:
         self.tree = tree #ATTENTION
 
 
-    #Function that adds words in a already existed Trie's Tree
-    #It works very similar to the creation of a new Tree's
     def addTrie(self,*words):
+        """Adds Words in the Tree
+        
+        Args:
+            words: N given words to add in the Tree
+
+        Returns:
+            The Tree itself
+        """
 
         for word in words: #looping all words given
             currentDict = self.tree 
@@ -82,8 +100,17 @@ class TreeTrie:
 #------------------
 
     
-    #It gets a value of a word
+    
     def getVal(self, word):
+        """ Gets a value of a word
+
+        Args:
+            word: Given word to get its value 
+
+        Return:
+            Word Value
+        """
+
         if(not(self.inTrie(word))):
             return 0
         currentDict = self.tree
@@ -100,9 +127,16 @@ class TreeTrie:
             return 0
 
         
-    #It get all values of all words and returns a list with all the values
-    #remember to compare with the entry list, because it save only the values
     def getAll(self, lista):
+        """ Get all values of all words and returns a list with all the values
+
+        Args:
+            lista: A List of the Words
+        Return:
+            A List of the Value of the words
+
+        Observation: Remember to compare with the entry list, because it save only the values
+        """
         listona = []
         for i in range(len(lista)):
             if(self.inTrie(lista[i])):
@@ -110,8 +144,14 @@ class TreeTrie:
         return listona
 
 
-    #As the name says, 'in Trie ?'
     def inTrie(self, word):
+        """ Check if the word is in the Tree
+
+        Args:
+            word: The Word you want to check
+        Return:
+            A Boolean Value (True or False)
+        """
         currentDict = self.tree
         progLetter = '' 
         for letter in word:
