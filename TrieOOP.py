@@ -22,6 +22,7 @@ class TreeTrie:
 
         self.tree = tree #ATTENTION
 
+
     #Function that adds words in a already existed Trie's Tree
     #It works very similar to the creation of a new Tree's
     def addTrie(self,*words):
@@ -79,6 +80,7 @@ class TreeTrie:
             
         return tec
 #------------------
+
     
     #It gets a value of a word
     def getVal(self, word):
@@ -96,6 +98,8 @@ class TreeTrie:
             return currentDict['value']
         else:
             return 0
+
+        
     #It get all values of all words and returns a list with all the values
     #remember to compare with the entry list, because it save only the values
     def getAll(self, lista):
@@ -104,6 +108,7 @@ class TreeTrie:
             if(self.inTrie(lista[i])):
                 listona.append(self.getVal(lista[i]))
         return listona
+
 
     #As the name says, 'in Trie ?'
     def inTrie(self, word):
@@ -126,18 +131,19 @@ class TreeTrie:
                 return False
 
 
+if (__name__ == "__main__"):
+    #Debugger
+    x = TreeTrie('salada')
+    print(x.tree)
+    #x.percorra(x.tree) #WRONG
+    print(x.addTrie('sal','salvador','salada','salada'))
+    ll = ['sal','salvador','salada']
+    print(x.getAll(ll))
+    print(x.getVal('salada'))
+    print(x.inTrie('sergipe'))
+    print(x.inTrie('sal'))
+    print(x.tree)
 
-#Debugger
-x = TreeTrie('salada')
-print(x.tree)
-#x.percorra(x.tree) #WRONG
-print(x.addTrie('sal','salvador','salada','salada'))
-ll = ['sal','salvador','salada']
-print(x.getAll(ll))
-print(x.getVal('salada'))
-print(x.inTrie('sergipe'))
-print(x.inTrie('sal'))
-print(x.tree)
 
 
 #Constructor CHECK
