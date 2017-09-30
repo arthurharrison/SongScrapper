@@ -1,7 +1,6 @@
 #------------------------
 #TODO: Documentation and other stuff
 #------------------------
-
 import re
 import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
@@ -10,11 +9,13 @@ from bs4 import BeautifulSoup as BS
 def get_lyrics(artist,songTitle):
     artist = artist.lower()
     songTitle = songTitle.lower()
+    if artist.startswith("the "):# Remove starting 'the' from artist
+        artist = artist[3:]
+
     # RegEx removes everything except alphanumeric characters from artist and songTitle
     artist = re.sub('[^A-Za-z0-9]+', "", artist)
     songTitle = re.sub('[^A-Za-z0-9]+', "", songTitle)
-    if artist.startswith("the"):# Remove starting 'the' from artist
-        artist = artist[3:]
+    
     url = "http://azlyrics.com/lyrics/"+artist+"/"+songTitle+".html"
     
     try:
@@ -36,9 +37,11 @@ def get_lyrics(artist,songTitle):
 #ignore text beetween []. And ignore album, and EP
 def get_band(artist):
     artist = artist.lower()
-    artist = re.sub('[^A-Za-z0-9]+', "", artist)
-    if artist.startswith("the"):
+    if artist.startswith("the "):
         artist = artist[3:]
+
+    artist = re.sub('[^A-Za-z0-9]+', "", artist)
+    
     url = "http://www.azlyrics.com/"+artist[0]+"/"+artist+".html"
 
     try:
@@ -61,6 +64,7 @@ def get_band(artist):
 
 
 #Debugger
-x = get_lyrics('pink floyd',"Summer '68");
+#x = get_lyrics('pink floyd',"Summer '68");
+x = get_lyrics('The Who','My Generation')
 #get_band('foo fighters')
 print(x); 
