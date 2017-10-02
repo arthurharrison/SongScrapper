@@ -18,10 +18,10 @@ class TreeTrie:
     """
 
     def __init__(self, *words):
-        tree = dict()
+        self.tree = dict()
 
         for word in words:
-            currentDict = tree
+            currentDict = self.tree
             progLetter = ''
             for letter in word:
                 progLetter = progLetter + letter
@@ -31,12 +31,12 @@ class TreeTrie:
             else:
                 currentDict['value'] = 1
 
-        self.tree = tree
+
 
 
     def addTrie(self,*words):
         """Adds Words in the Tree
-        
+
         Args:
             words: N given words to add in the Tree
 
@@ -45,7 +45,7 @@ class TreeTrie:
         """
 
         for word in words: #looping all words given
-            currentDict = self.tree 
+            currentDict = self.tree
             progLetter = ''
             for letter in word: #creating every letter of the given word
                 progLetter = progLetter + letter
@@ -58,7 +58,7 @@ class TreeTrie:
                 currentDict['value'] = currentDict['value'] + 1  #If for some reason the word already exists, it will only Add +1 to the Counter
             else:
                 currentDict['value'] = 1 #If not, it will create the Counter
-                
+
         return self.tree
 
 #-------------
@@ -73,14 +73,14 @@ class TreeTrie:
                 continue
             if('value' in aux):#if it encounters a 'word' it resets the counter
                 tete = ''
-            
+
             tete = aux[i]
             teste.append(tete)
-            
+
             if(type(self.tree[aux[i]]) == int): #or type(aux[i]) == int):
                 continue
             return self.percorra(self.tree[aux[i]])
-        
+
 
 
     #creates a list with all the itens found in the tree with value
@@ -91,17 +91,17 @@ class TreeTrie:
         for i in range(len(lista)):
             if(inTrie(self.tree,lista[i])):
                 tec.append(lista[i])
-            
+
         return tec
 #------------------
 
-    
-    
+
+
     def getVal(self, word):
         """ Gets a value of a word
 
         Args:
-            word: Given word to get its value 
+            word: Given word to get its value
 
         Return:
             Word Value
@@ -122,7 +122,7 @@ class TreeTrie:
         else:
             return 0
 
-        
+
     def getAll(self, lista):
         """ Get all values of all words and returns a list with all the values
 
@@ -149,7 +149,7 @@ class TreeTrie:
             A Boolean Value (True or False)
         """
         currentDict = self.tree
-        progLetter = '' 
+        progLetter = ''
         for letter in word:
             progLetter = progLetter + letter
             #it runs every letter
@@ -161,10 +161,7 @@ class TreeTrie:
         else:
             #if it runs and FIND ALL LETTERS IN THE WORD
             #it will look if it has a value on it
-            if ('value' in currentDict):
-                return True
-            else:
-                return False
+            return 'value' in currentDict
 
 
 if (__name__ == "__main__"):
