@@ -4,7 +4,7 @@
 import re
 import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
- 
+
 
 def get_lyrics(artist,songTitle):
     artist = artist.lower()
@@ -15,9 +15,9 @@ def get_lyrics(artist,songTitle):
     # RegEx removes everything except alphanumeric characters from artist and songTitle
     artist = re.sub('[^A-Za-z0-9]+', "", artist)
     songTitle = re.sub('[^A-Za-z0-9]+', "", songTitle)
-    
+
     url = "http://azlyrics.com/lyrics/"+artist+"/"+songTitle+".html"
-    
+
     try:
         content = UrlReq.urlopen(url).read()
         soup = BS(content, 'html.parser')
@@ -41,7 +41,7 @@ def get_band(artist):
         artist = artist[3:]
 
     artist = re.sub('[^A-Za-z0-9]+', "", artist)
-    
+
     url = "http://www.azlyrics.com/"+artist[0]+"/"+artist+".html"
 
     try:
@@ -67,4 +67,4 @@ def get_band(artist):
 #x = get_lyrics('pink floyd',"Summer '68");
 x = get_lyrics('The Who','My Generation')
 #get_band('foo fighters')
-print(x); 
+print(x);

@@ -64,7 +64,7 @@ class TreeTrie:
 #-------------
 #TODO: Delete ?
     def percorra(self, trie):
-        aux = list(self.tree)
+        aux = list(self.tree) #trie :) 
         tete = ''
         teste=[]
         self.teste = teste
@@ -79,7 +79,7 @@ class TreeTrie:
 
             if(type(self.tree[aux[i]]) == int): #or type(aux[i]) == int):
                 continue
-            return self.percorra(self.tree[aux[i]])
+            return self.percorra(self.tree[aux[i]]) #self.percorra(trie[aux[i]]) return or not?
 
 
 
