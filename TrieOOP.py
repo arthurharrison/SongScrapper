@@ -65,6 +65,12 @@ class TreeTrie:
 
 
     def percorra(self, trie):
+        """Walks trough the Tree Trie and make a list with all the words saved in it
+        
+        Args: Tree Trie
+
+        Return: A List
+        """
         aux = list(trie) 
         tete = ''
         
@@ -84,8 +90,12 @@ class TreeTrie:
         return self.teste
 
 
-    #creates a list with all the itens found in the tree with value
     def percorraTor(self, lista):
+        """Creates a list with all the items found in the tree with value
+        Args: A List
+
+        Return: a List with only the items that are valuable
+        """
         wordList = []
         while 'value' in lista:
             lista.remove('value')
@@ -185,8 +195,8 @@ if (__name__ == "__main__"):
 
 #Constructor CHECK
 #AddTrie CHECK
-#percorra NOT CHECK (?)
-#percorraTor NOT CHECK (?)
+#percorra CHECK
+#percorraTor CHECK
 #getVal CHECK
 #getAll CHECK
 #inTrie CHECK
