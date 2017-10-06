@@ -3,7 +3,7 @@ class TreeTrie:
     #Developer Observation:
     #CurrentDict = the variable that is going to get in the Dictonary and explore every branch of it
     #progLetter = is the Progression of the word, it starts with the first letter and in the end will be the whole word
-    #
+    #TODO: import newTrie percorra
     #--------------
 
     """This Class is a TreeTrie (as the name says)
