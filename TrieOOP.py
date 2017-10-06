@@ -19,7 +19,7 @@ class TreeTrie:
 
     def __init__(self, *words):
         self.tree = dict()
-
+        self.teste = []
         for word in words:
             currentDict = self.tree
             progLetter = ''
@@ -30,6 +30,7 @@ class TreeTrie:
                 currentDict['value'] = currentDict['value'] + 1
             else:
                 currentDict['value'] = 1
+        self.tree
 
 
 
@@ -61,13 +62,12 @@ class TreeTrie:
 
         return self.tree
 
-#-------------
-#TODO: Delete ?
+
+
     def percorra(self, trie):
-        aux = list(self.tree) #trie :) 
+        aux = list(trie) 
         tete = ''
-        teste=[]
-        self.teste = teste
+        
         for i in range(len(aux)):
             if(len(aux) == 1 and 'value' in aux):
                 continue
@@ -75,25 +75,28 @@ class TreeTrie:
                 tete = ''
 
             tete = aux[i]
-            teste.append(tete)
+            self.teste.append(tete)
 
-            if(type(self.tree[aux[i]]) == int): #or type(aux[i]) == int):
+            if(type(trie[aux[i]]) == int):
                 continue
-            return self.percorra(self.tree[aux[i]]) #self.percorra(trie[aux[i]]) return or not?
-
+            self.percorra(trie[aux[i]])
+        
+        return self.teste
 
 
     #creates a list with all the itens found in the tree with value
     def percorraTor(self, lista):
-        tec = []
+        wordList = []
         while 'value' in lista:
             lista.remove('value')
         for i in range(len(lista)):
-            if(inTrie(self.tree,lista[i])):
-                tec.append(lista[i])
+            if(self.inTrie(lista[i])):
+                if(lista[i] in wordList):
+                    continue
+                wordList.append(lista[i])
 
-        return tec
-#------------------
+        return wordList
+
 
 
 
@@ -168,8 +171,9 @@ if (__name__ == "__main__"):
     #Debugger
     x = TreeTrie('salada')
     print(x.tree)
-    #x.percorra(x.tree) #WRONG
     print(x.addTrie('sal','salvador','salada','salada'))
+    print(x.percorra(x.tree)) #WRONG
+    print(x.percorraTor(x.percorra(x.tree)))
     ll = ['sal','salvador','salada']
     print(x.getAll(ll))
     print(x.getVal('salada'))
