@@ -1,6 +1,7 @@
 tester.py
 TreeTrie.py
 __pycache__/
+*.sublime-workspace
 
 # Compiled source #
 ###################

@@ -2,6 +2,7 @@
 import re
 import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
+import TrieOOP
 
 
 def getLyrics(artist,songTitle):
@@ -68,7 +69,28 @@ def getBandSongs(artist):
         return "Exception occurred \n" + str(e)
 
 
+def getAllBandLyrics():
+    #This is only a test
+    listlyr = []
+    try:
+        songs = getBandSongs('pink floyd')
+        for i in range(len(songs)):
+            lyrics = getLyrics('pink floyd',songs[i])
+            listlyr.append(lyrics)
+            print('%.2f' %(i*100/len(songs)),songs[i])
+    except Exception as e:
+        print(str(e))
+        #return "Exception occurred \n" + str(e)
+    return listlyr
+
+
 #Debugger
-x = getLyrics('pink floyd',"Summer '68")
+tree = TrieOOP.TreeTrie('then', 'i', 'forget')
+#print(getAllBandLyrics())
+#print(tree.tree)
+print(getBandSongs('foo fighters'))
+"""
+x = getLyrics('pink floyd',"paintbox")
 print(getBandSongs('foo fighters'))
 print(x);
+"""
