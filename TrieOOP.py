@@ -1,3 +1,4 @@
+import re
 class TreeTrie:
     #---------------
     #Developer Observation:

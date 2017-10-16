@@ -3,6 +3,7 @@ import re
 import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
 import TrieOOP
+import time
 
 
 def getLyrics(artist,songTitle):
@@ -25,11 +26,11 @@ def getLyrics(artist,songTitle):
         content = UrlReq.urlopen(url).read()
         soup = BS(content, 'html.parser')
         lyrics = str(soup)
-        upPartition = '<!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->'
-        downPartition = '<!-- MxM banner -->'
-        lyrics = lyrics.split(upPartition)[1]
-        lyrics = lyrics.split(downPartition)[0]
+        lyrics = lyrics.split('<!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->')[1]
+        lyrics = lyrics.split('<!-- MxM banner -->')[0]
         lyrics = lyrics.replace('<br>','').replace('</br>','').replace('</div>','').strip()
+        if('<i>' in lyrics):
+            lyrics = lyrics.replace('<i>','').replace('</i>','').strip()
         return lyrics
     except Exception as e:
         return "Exception occurred \n" + str(e)
@@ -73,11 +74,13 @@ def getAllBandLyrics():
     #This is only a test
     listlyr = []
     try:
-        songs = getBandSongs('pink floyd')
+        songs = getBandSongs('them crooked vultures')
         for i in range(len(songs)):
-            lyrics = getLyrics('pink floyd',songs[i])
+            lyrics = getLyrics('them crooked vultures',songs[i])
             listlyr.append(lyrics)
             print('%.2f' %(i*100/len(songs)),songs[i])
+            """if(not bool(i % 5)):
+                time.sleep(2)"""
     except Exception as e:
         print(str(e))
         #return "Exception occurred \n" + str(e)
@@ -85,10 +88,17 @@ def getAllBandLyrics():
 
 
 #Debugger
-tree = TrieOOP.TreeTrie('then', 'i', 'forget')
-#print(getAllBandLyrics())
+tree = TrieOOP.TreeTrie()
+x = getLyrics('them crooked vultures','bandoliers')
+#x = getAllBandLyrics()
+x = x.split(' ')
+#x = x.split('\n')
+print(x)
+tree.addTrie(x)
+print(tree.tree)
 #print(tree.tree)
-print(getBandSongs('foo fighters'))
+#print(getBandSongs('them crooked vultures'))
+#print(getLyrics('them crooked vultures','bandoliers'))
 """
 x = getLyrics('pink floyd',"paintbox")
 print(getBandSongs('foo fighters'))
