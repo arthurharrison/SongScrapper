@@ -4,7 +4,7 @@ class TreeTrie:
     #Developer Observation:
     #CurrentDict = the variable that is going to get in the Dictonary and explore every branch of it
     #progLetter = is the Progression of the word, it starts with the first letter and in the end will be the whole word
-    #TODO: split ' ' between words
+    #TODO: only happines (?)
     #--------------
 
     """This Class is a TreeTrie (as the name says)
@@ -20,9 +20,12 @@ class TreeTrie:
 
     def __init__(self, *words):
         self.tree = dict()
-        self.teste = []
+        self.list = []
         for word in words:
             currentDict = self.tree
+            if(' ' in word):
+                query = word.split(' ')
+                continue
             progLetter = ''
             for letter in word:
                 progLetter = progLetter + letter
@@ -31,7 +34,19 @@ class TreeTrie:
                 currentDict['value'] = currentDict['value'] + 1
             else:
                 currentDict['value'] = 1
-        self.tree
+        if(len(query)>0):
+            for word in query:
+                currentDict = self.tree
+                progLetter = ''
+                for letter in word:
+                    progLetter = progLetter + letter
+                    currentDict = currentDict.setdefault(progLetter,{})
+                if('value' in currentDict):
+                    currentDict['value'] = currentDict['value'] + 1
+                else:
+                    currentDict['value'] = 1
+
+        self.tree #ask lucas about this, why not return ?
 
 
 
@@ -82,13 +97,13 @@ class TreeTrie:
                 tete = ''
 
             tete = aux[i]
-            self.teste.append(tete)
+            self.list.append(tete)
 
             if(type(trie[aux[i]]) == int):
                 continue
             self.percorra(trie[aux[i]])
         
-        return self.teste
+        return self.list
 
 
     def percorraTor(self, lista):
@@ -107,8 +122,6 @@ class TreeTrie:
                 wordList.append(lista[i])
 
         return wordList
-
-
 
 
     def getVal(self, word):
@@ -153,6 +166,22 @@ class TreeTrie:
                 listona.append(self.getVal(lista[i]))
         return listona
 
+    def sumAll(self, lista):
+        """ Get the words and returns the total number of words in the Tree
+
+        Args:
+            lista: A List of Words
+        Return:
+            A Interger meaning the Total of words in the Tree
+        """
+        total = 0
+        dumpList = []
+        for i in range(len(lista)):
+            if(self.inTrie(lista[i]) and lista[i] not in dumpList):
+                total += self.getVal(lista[i])
+                dumpList.append(lista[i])
+        return total
+
 
     def inTrie(self, word):
         """ Check if the word is in the Tree
@@ -180,10 +209,10 @@ class TreeTrie:
 
 if (__name__ == "__main__"):
     #Debugger
-    x = TreeTrie('salada')
+    x = TreeTrie('salada e bahia')
     print(x.tree)
     print(x.addTrie('sal','salvador','salada','salada'))
-    print(x.percorra(x.tree)) #WRONG
+    print(x.percorra(x.tree)) 
     print(x.percorraTor(x.percorra(x.tree)))
     ll = ['sal','salvador','salada']
     print(x.getAll(ll))
@@ -191,13 +220,4 @@ if (__name__ == "__main__"):
     print(x.inTrie('sergipe'))
     print(x.inTrie('sal'))
     print(x.tree)
-
-
-
-#Constructor CHECK
-#AddTrie CHECK
-#percorra CHECK
-#percorraTor CHECK
-#getVal CHECK
-#getAll CHECK
-#inTrie CHECK
+    print(x.sumAll(x.percorra(x.tree)))
