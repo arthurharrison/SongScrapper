@@ -21,6 +21,7 @@ class TreeTrie:
     def __init__(self, *words):
         self.tree = dict()
         self.list = []
+        query = []
         for word in words:
             currentDict = self.tree
             if(' ' in word):
@@ -209,7 +210,8 @@ class TreeTrie:
 
 if (__name__ == "__main__"):
     #Debugger
-    x = TreeTrie('salada e bahia')
+    y = "Oh it's too late"
+    x = TreeTrie('salada e bahia', y)
     print(x.tree)
     print(x.addTrie('sal','salvador','salada','salada'))
     print(x.percorra(x.tree)) 

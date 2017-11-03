@@ -1,4 +1,4 @@
-#TODO: Make everything asynchronous?
+#TODO: Make everything asynchronous? Add a limit of songs to scrap, so it doesnt overrun the server
 import re
 import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
@@ -91,14 +91,17 @@ def getAllBandLyrics():
 tree = TrieOOP.TreeTrie()
 x = getLyrics('them crooked vultures','bandoliers')
 #x = getAllBandLyrics()
-x = x.split(' ')
-#x = x.split('\n')
-print(x)
-tree.addTrie(x)
+x = x.split('\n')
+for x in x:
+    y = re.sub('[^A-Za-z ]',"",x)
+    y = y.split(' ')
+    for y in y:
+        if y=='' or y == 'x': continue
+        print(y)
+        tree.addTrie(y.lower())
 print(tree.tree)
-#print(tree.tree)
-#print(getBandSongs('them crooked vultures'))
-#print(getLyrics('them crooked vultures','bandoliers'))
+toList = tree.percorra(tree.tree)
+print("Number of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
 """
 x = getLyrics('pink floyd',"paintbox")
 print(getBandSongs('foo fighters'))
