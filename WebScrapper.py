@@ -87,9 +87,22 @@ def getAllBandLyrics():
     return listlyr
 
 
+def passFunc(tree, band, *songs):
+    for song in songs:
+        actualSong = getLyrics(band, song)
+        actualSong = actualSong.split('\n')
+        for x in actualSong:
+            y = re.sub('[^A-Za-z ]',"",x)
+            y = y.split(' ')
+            for y in y:
+                if y == '' or y == 'x': continue
+                print(y)
+                tree.addTrie(y.lower())
 #Debugger
-tree = TrieOOP.TreeTrie()
-x = getLyrics('them crooked vultures','bandoliers')
+'''
+
+#x = getLyrics('them crooked vultures','bandoliers')
+x = getLyrics('pink floyd',"echoes")
 #x = getAllBandLyrics()
 x = x.split('\n')
 for x in x:
@@ -99,9 +112,13 @@ for x in x:
         if y=='' or y == 'x': continue
         print(y)
         tree.addTrie(y.lower())
+'''
+tree = TrieOOP.TreeTrie()
+#passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
+passFunc(tree, 'radiohead','15 step', 'bodysnatchers', 'lotus flower')
 print(tree.tree)
 toList = tree.percorra(tree.tree)
-print("Number of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
+print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
 """
 x = getLyrics('pink floyd',"paintbox")
 print(getBandSongs('foo fighters'))
