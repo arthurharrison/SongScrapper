@@ -3,8 +3,6 @@
   <p  align="center">A WebScrapper but with your favorite band songs.</p>
 </p>
 
----
-
 ### Why? 
 Lorem Ipsum
 ### How to Use
