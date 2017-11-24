@@ -4,6 +4,7 @@ import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
 import TrieOOP
 import time
+import dataWriter as DW
 
 
 def getLyrics(artist,songTitle):
@@ -96,7 +97,7 @@ def passFunc(tree, band, *songs):
             y = y.split(' ')
             for y in y:
                 if y == '' or y == 'x': continue
-                print(y)
+                #print(y)
                 tree.addTrie(y.lower())
 #Debugger
 '''
@@ -114,10 +115,13 @@ for x in x:
         tree.addTrie(y.lower())
 '''
 tree = TrieOOP.TreeTrie()
-#passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
-passFunc(tree, 'radiohead','15 step', 'bodysnatchers', 'lotus flower')
-print(tree.tree)
+passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
+#passFunc(tree, 'radiohead','15 step', 'bodysnatchers', 'lotus flower')
+#print(tree.tree)
 toList = tree.percorra(tree.tree)
+data1 = tree.percorraTor(toList)
+data2 = tree.getAll(data1)
+DW.xlsxWriter(data1, data2, "darkside.xlsx")
 print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
 """
 x = getLyrics('pink floyd',"paintbox")

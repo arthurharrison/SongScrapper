@@ -215,9 +215,9 @@ if (__name__ == "__main__"):
     print(x.tree)
     print(x.addTrie('sal','salvador','salada','salada'))
     print(x.percorra(x.tree)) 
-    print(x.percorraTor(x.percorra(x.tree)))
-    ll = ['sal','salvador','salada']
-    print(x.getAll(ll))
+    tt = x.percorraTor(x.percorra(x.tree))
+    print(tt)
+    print(x.getAll(tt))
     print(x.getVal('salada'))
     print(x.inTrie('sergipe'))
     print(x.inTrie('sal'))
