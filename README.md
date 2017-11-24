@@ -27,4 +27,4 @@ Lorem Img Ipsum
 
 ![avatar arthur](https://avatars1.githubusercontent.com/u/22755581?s=130&v=4) | ![avatar lucas](https://avatars3.githubusercontent.com/u/26311458?s=130&v=4)
 -------------------------------------------------------------------------- | --------------------------------------------------------------------------
-  [Arthur Tavares](https://github.com/arthurharrison)                                  |  [Lucas Menezes](https://github.com/lucas-menezes)
+  [Arthur Tavares](https://github.com/arthurharrison)                         |  [Lucas Menezes](https://github.com/lucas-menezes)

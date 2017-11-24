@@ -3,6 +3,8 @@ TreeTrie.py
 __pycache__/
 *.sublime-workspace
 *.json
+*.xlsx
+*.png
 
 # Compiled source #
 ###################
