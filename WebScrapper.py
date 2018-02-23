@@ -7,13 +7,15 @@ import time
 import dataWriter as DW
 
 
-def getLyrics(artist,songTitle):
+def getLyrics(artist,songTitle, treatment = False ): #when treatment works make it true
     """Given the artist and the song you will get the Lyrics of the song
 
     Args: Artist, Song Title
 
     Return: Song Lyric
     """
+    notWanted = ['the','a','an','to','for','in','on','at'] #articles, prepositions -> words that are not usable in the analysis
+    #toChange = ['ive','youre'] #words that are actually two ; I don't know if i want to create a loop for this
     artist = artist.lower()
     songTitle = songTitle.lower()
     if artist.startswith("the "):
@@ -32,6 +34,16 @@ def getLyrics(artist,songTitle):
         lyrics = lyrics.replace('<br>','').replace('</br>','').replace('</div>','').strip()
         if('<i>' in lyrics):
             lyrics = lyrics.replace('<i>','').replace('</i>','').strip()
+        #THIS DOESNT WORK, WHY???????????????????
+        if ('ive' in lyrics and treatment == True):
+            lyrics = re.sub(r'\bive\b','i have',lyrics)
+        if(treatment == True):
+            for y in range(len(notWanted)):
+                #editor = re.sub(r"\b%s\b" % s[0] , s[1], editor)
+                lyrics = re.sub(r"\b%s\b"%notWanted[y],'',lyrics)
+                print(len(notWanted),y)
+                #lyrics =lyrics.replace(notWanted[i],'').strip()
+        #WHY IT DOESNT WORK??????
         return lyrics
     except Exception as e:
         return "Exception occurred \n" + str(e)
@@ -121,7 +133,7 @@ passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in 
 toList = tree.percorra(tree.tree)
 data1 = tree.percorraTor(toList)
 data2 = tree.getAll(data1)
-DW.xlsxWriter(data1, data2, "darkside.xlsx")
+DW.xlsxWriter(data1, data2, "darkside2")
 print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
 """
 x = getLyrics('pink floyd',"paintbox")

@@ -9,13 +9,21 @@ class TreeTrie:
 
     """This Class is a TreeTrie (as the name says)
 
-        You can Enter with N words or even with none, and it will create a Tree on your given object
+        You can Enter with as many words as you want or even with none, and it will create a Tree on your given object
 
         Functions in this class:
             addTrie: Adds Words in the Tree
             getVal: Gets a value of the given word
             getAll: Get all values of all words and returns a list with all the values
             inTrie: Check if the word given is in the Tree
+            sumAll: Get the words and returns the total number of words in the Tree
+            percorra: Walks trough the Tree Trie and make a list with all the words saved in it
+            percorraTor: Creates a list with all the items found in the tree with value
+
+        Important Variables used in this class:
+            CurrentDict: It's the variable that is going to get in the Dictonary and explore every branch of it
+            progLetter:  Is the Progression of the word, it starts with the first letter and in the end will be the whole word
+
     """
 
     def __init__(self, *words):
