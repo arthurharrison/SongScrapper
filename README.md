@@ -10,15 +10,23 @@ Lorem Ipsum
 ### Work to do
 - [x] Get Lyrics in AZLycrics.com
 - [x] Construct a Tree Trie
-- [ ] Make the Data ready for use (.csv)
-- [ ] Create things with the Data
+- [x] Make the Data ready for use (.csv)
+- [x] Create things with the Data
+- [ ] Make the code more customable and easier for use
+- [ ] Make it automatic (maybe?)
 - [ ] Conquer the World
 - [ ] Create a good Readme for this project
 
 ### Examples
-Lorem Img Ipsum
+Here's a preview of what I could do with the help of [Tableau](tableau.com)
+
+Have a look in this Word Cloud image made with the words that we retrieve from the album The Dark Side of The Moon by Pink Floyd
+![darkside of the moon](https://i.imgur.com/buMJFIp.png)
+
+And here is another Word Cloud image from the words gathered from the album Amnesiac by Radiohead
+![amnesiac](https://i.imgur.com/fX9O1XZ.png)
 ### What we've learned
-* Stuff
+* How to gather information directly from a WebSite (Web Scrap);
 
 * Other Stuff 
 

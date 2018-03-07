@@ -1,4 +1,4 @@
-#TODO: Make everything asynchronous? Add a limit of songs to scrap, so it doesnt overrun the server
+#TODO: Add a limit of songs to scrap, so it doesnt overrun the server
 import re
 import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
@@ -34,6 +34,8 @@ def getLyrics(artist,songTitle, treatment = False ): #when treatment works make 
         lyrics = lyrics.replace('<br>','').replace('</br>','').replace('</div>','').strip()
         if('<i>' in lyrics):
             lyrics = lyrics.replace('<i>','').replace('</i>','').strip()
+
+        #This Block of code isn't usable
         #THIS DOESNT WORK, WHY???????????????????
         if ('ive' in lyrics and treatment == True):
             lyrics = re.sub(r'\bive\b','i have',lyrics)
@@ -44,6 +46,8 @@ def getLyrics(artist,songTitle, treatment = False ): #when treatment works make 
                 print(len(notWanted),y)
                 #lyrics =lyrics.replace(notWanted[i],'').strip()
         #WHY IT DOESNT WORK??????
+        #--------------
+
         return lyrics
     except Exception as e:
         return "Exception occurred \n" + str(e)
@@ -101,7 +105,18 @@ def getAllBandLyrics():
 
 
 def passFunc(tree, band, *songs):
+    """ It work as a 'Messenger' it get a generator with the song titles and get the lyric one by one; then puts on the Tree Trie
+
+    Args: The Tree, The Band name, and any number of songs
+
+    Return: None, it just adds in the Tree Trie
+    """
+    counter = 0
     for song in songs:
+        counter = counter + 1
+        #I don't want to overrun the website, maybe later it would be better to find a new way.
+        if(counter == 12):
+            time.sleep(4)
         actualSong = getLyrics(band, song)
         actualSong = actualSong.split('\n')
         for x in actualSong:
@@ -109,11 +124,9 @@ def passFunc(tree, band, *songs):
             y = y.split(' ')
             for y in y:
                 if y == '' or y == 'x': continue
-                #print(y)
                 tree.addTrie(y.lower())
 #Debugger
 '''
-
 #x = getLyrics('them crooked vultures','bandoliers')
 x = getLyrics('pink floyd',"echoes")
 #x = getAllBandLyrics()
@@ -127,13 +140,13 @@ for x in x:
         tree.addTrie(y.lower())
 '''
 tree = TrieOOP.TreeTrie()
-passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
-#passFunc(tree, 'radiohead','15 step', 'bodysnatchers', 'lotus flower')
-#print(tree.tree)
+#passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
+passFunc(tree, 'radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
+        , 'I Might Be Wrong', 'Knives Out', 'Amnesiac / Morning Bell', 'Dollars And Cents', 'Like Spinning Plates', 'Life In A Glass House')
 toList = tree.percorra(tree.tree)
 data1 = tree.percorraTor(toList)
 data2 = tree.getAll(data1)
-DW.xlsxWriter(data1, data2, "darkside2")
+DW.xlsxWriter(data1, data2, "amnesiac")
 print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
 """
 x = getLyrics('pink floyd',"paintbox")
