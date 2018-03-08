@@ -55,7 +55,9 @@ DW.xlsxWriter(data1, data2, "amnesiac")
 ### What we've learned
 * How to gather information directly from a WebSite (Web Scrap);
 
-* Other Stuff 
+* How to use Tableau to create a image with the Data;
+
+* And in The Dark Side of The Moon the word 'love' appear only once ,but 'mad' appears 6 times.
 
 ---
 ### Contribuitors
