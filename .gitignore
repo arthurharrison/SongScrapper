@@ -1,6 +1,5 @@
-tester.py
-TreeTrie.py
 __pycache__/
+oldcode/
 *.sublime-workspace
 *.json
 *.xlsx

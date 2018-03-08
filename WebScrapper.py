@@ -126,30 +126,31 @@ def passFunc(tree, band, *songs):
                 if y == '' or y == 'x': continue
                 tree.addTrie(y.lower())
 #Debugger
-'''
-#x = getLyrics('them crooked vultures','bandoliers')
-x = getLyrics('pink floyd',"echoes")
-#x = getAllBandLyrics()
-x = x.split('\n')
-for x in x:
-    y = re.sub('[^A-Za-z ]',"",x)
-    y = y.split(' ')
-    for y in y:
-        if y=='' or y == 'x': continue
-        print(y)
-        tree.addTrie(y.lower())
-'''
-tree = TrieOOP.TreeTrie()
-#passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
-passFunc(tree, 'radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
-        , 'I Might Be Wrong', 'Knives Out', 'Amnesiac / Morning Bell', 'Dollars And Cents', 'Like Spinning Plates', 'Life In A Glass House')
-toList = tree.percorra(tree.tree)
-data1 = tree.percorraTor(toList)
-data2 = tree.getAll(data1)
-DW.xlsxWriter(data1, data2, "amnesiac")
-print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
-"""
-x = getLyrics('pink floyd',"paintbox")
-print(getBandSongs('foo fighters'))
-print(x);
-"""
+if __name__ == "__main__":
+    '''
+    #x = getLyrics('them crooked vultures','bandoliers')
+    x = getLyrics('pink floyd',"echoes")
+    #x = getAllBandLyrics()
+    x = x.split('\n')
+    for x in x:
+        y = re.sub('[^A-Za-z ]',"",x)
+        y = y.split(' ')
+        for y in y:
+            if y=='' or y == 'x': continue
+            print(y)
+            tree.addTrie(y.lower())
+    '''
+    tree = TrieOOP.TreeTrie()
+    #passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
+    passFunc(tree, 'radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
+            , 'I Might Be Wrong', 'Knives Out', 'Amnesiac / Morning Bell', 'Dollars And Cents', 'Like Spinning Plates', 'Life In A Glass House')
+    toList = tree.percorra(tree.tree)
+    data1 = tree.percorraTor(toList)
+    data2 = tree.getAll(data1)
+    DW.xlsxWriter(data1, data2, "amnesiac")
+    print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
+    """
+    x = getLyrics('pink floyd',"paintbox")
+    print(getBandSongs('foo fighters'))
+    print(x);
+    """
