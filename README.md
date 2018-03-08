@@ -8,13 +8,13 @@
 * A Code that collect the lyrics from a website and writes in a .xlsx file the word and the number the times it shows
 * It also uses Tree Trie Data Structure, so it can be harvested into another project in case you need this kind of Data Structure
 
-Here's what I was able to do with the Data and the help of [Tableau](tableau.com) for visualiation purposes.
+Here's what I was able to do with the Data and the help of [Tableau](https://tableau.com) for visualiation purposes.
 
 Have a look in this Word Cloud image made with the words that we retrieve from the album The Dark Side of The Moon by Pink Floyd
 ![darkside of the moon](https://i.imgur.com/buMJFIp.png)
 
 And here is another Word Cloud image from the words gathered from the album Amnesiac by Radiohead
-![amnesiac](https://i.imgur.com/fX9O1XZ.png)
+![amnesiac](https://i.imgur.com/NUQw5Wc.png)
 
 ### Work to do
 - [x] Get Lyrics in AZLycrics.com
@@ -42,8 +42,8 @@ import TrieOOP
 import dataWriter as DW
 
 tree = TrieOOP.TreeTrie()
-WS.passFunc(tree, 'radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
-            , 'I Might Be Wrong', 'Knives Out', 'Amnesiac / Morning Bell', 'Dollars And Cents', 'Like Spinning Plates', 'Life In A Glass House')
+WS.passFunc(tree, 'radiohead','Packt Like Sardines In A Crushed Tin Box','Pyramid Song', 'Pull / Pulk Revolving Doors','You And Whose Army?'
+            ,'I Might Be Wrong','Knives Out','Amnesiac / Morning Bell','Dollars And Cents','Like Spinning Plates','Life In A Glass House')
 toList =  tree.percorra(tree.tree)
 data1 = tree.percorraTor(toList)
 data2 = tree.getAll(data1)
