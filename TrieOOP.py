@@ -13,7 +13,8 @@ class TreeTrie:
 
         Functions in this class:
             addTrie: Adds Words in the Tree
-            getVal: Gets a value of the given word
+            getDataVal: Gets a value of the given word
+            getData: Runs Percorra and PercorraTor, have the Real Data usable for what we need
             getAll: Get all values of all words and returns a list with all the values
             inTrie: Check if the word given is in the Tree
             sumAll: Get the words and returns the total number of words in the Tree
@@ -132,8 +133,21 @@ class TreeTrie:
 
         return wordList
 
+    def getData(self, arg):
+        """ Runs both percorra and percorraTor, making more easy to use the script
 
-    def getVal(self, word):
+        Args:
+            arg: The Tree
+        Return:
+            Return a list with only the items that are valuable
+        """
+        x = self.percorra(arg.tree)
+        data = self.percorraTor(x)
+
+        return data
+
+
+    def getDataVal(self, word):
         """ Gets a value of a word
 
         Args:
@@ -172,7 +186,7 @@ class TreeTrie:
         listona = []
         for i in range(len(lista)):
             if(self.inTrie(lista[i])):
-                listona.append(self.getVal(lista[i]))
+                listona.append(self.getDataVal(lista[i]))
         return listona
 
     def sumAll(self, lista):
@@ -187,7 +201,7 @@ class TreeTrie:
         dumpList = []
         for i in range(len(lista)):
             if(self.inTrie(lista[i]) and lista[i] not in dumpList):
-                total += self.getVal(lista[i])
+                total += self.getDataVal(lista[i])
                 dumpList.append(lista[i])
         return total
 
@@ -226,7 +240,7 @@ if (__name__ == "__main__"):
     tt = x.percorraTor(x.percorra(x.tree))
     print(tt)
     print(x.getAll(tt))
-    print(x.getVal('salada'))
+    print(x.getDataVal('salada'))
     print(x.inTrie('sergipe'))
     print(x.inTrie('sal'))
     print(x.tree)

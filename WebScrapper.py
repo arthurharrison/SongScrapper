@@ -1,4 +1,3 @@
-#TODO: Add a limit of songs to scrap, so it doesnt overrun the server
 import re
 import urllib.request as UrlReq
 from bs4 import BeautifulSoup as BS
@@ -87,20 +86,22 @@ def getBandSongs(artist):
         return "Exception occurred \n" + str(e)
 
 
-def getAllBandLyrics():
-    #This is only a test
+def getAllBandLyrics(band):
     listlyr = []
+    counter = 1
     try:
-        songs = getBandSongs('them crooked vultures')
-        for i in range(len(songs)):
-            lyrics = getLyrics('them crooked vultures',songs[i])
+        songs = getBandSongs(band)
+        for song in songs:
+            counter = counter + 1
+            #I don't want to overrun the website, maybe later it would be better to find a new way.
+            if(counter % 12):
+                time.sleep(4)
+
+            lyrics = getLyrics(band,song)
             listlyr.append(lyrics)
-            print('%.2f' %(i*100/len(songs)),songs[i])
-            """if(not bool(i % 5)):
-                time.sleep(2)"""
     except Exception as e:
         print(str(e))
-        #return "Exception occurred \n" + str(e)
+        
     return listlyr
 
 
@@ -111,11 +112,11 @@ def passFunc(tree, band, *songs):
 
     Return: None, it just adds in the Tree Trie
     """
-    counter = 0
+    counter = 1
     for song in songs:
         counter = counter + 1
         #I don't want to overrun the website, maybe later it would be better to find a new way.
-        if(counter == 12):
+        if(counter % 12):
             time.sleep(4)
         actualSong = getLyrics(band, song)
         actualSong = actualSong.split('\n')
@@ -125,32 +126,26 @@ def passFunc(tree, band, *songs):
             for y in y:
                 if y == '' or y == 'x': continue
                 tree.addTrie(y.lower())
+
+def mainStarter(band, *songs):
+    """ It makes the module easier to use and to call.
+    We will always use this configuration, at least 99% of the time, so making a function that do this work is a good thing
+
+    Args: The Band and the songs that we will gather the Data from
+
+    Return: None, the function only exists to execute other functions
+    """
+    global tree
+    tree = TrieOOP.TreeTrie()
+    passFunc(tree, band, *songs)
+    
+
 #Debugger
 if __name__ == "__main__":
-    '''
-    #x = getLyrics('them crooked vultures','bandoliers')
-    x = getLyrics('pink floyd',"echoes")
-    #x = getAllBandLyrics()
-    x = x.split('\n')
-    for x in x:
-        y = re.sub('[^A-Za-z ]',"",x)
-        y = y.split(' ')
-        for y in y:
-            if y=='' or y == 'x': continue
-            print(y)
-            tree.addTrie(y.lower())
-    '''
-    tree = TrieOOP.TreeTrie()
-    #passFunc(tree, 'pink floyd','speak to me', 'breathe', 'time', 'the great gig in the sky', 'money', 'us and them', 'brain damage', 'eclipse')
-    passFunc(tree, 'radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
+    mainStarter('radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
             , 'I Might Be Wrong', 'Knives Out', 'Amnesiac / Morning Bell', 'Dollars And Cents', 'Like Spinning Plates', 'Life In A Glass House')
-    toList = tree.percorra(tree.tree)
-    data1 = tree.percorraTor(toList)
+    data1 = tree.getData(tree)
     data2 = tree.getAll(data1)
-    DW.xlsxWriter(data1, data2, "amnesiac")
-    print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(tree.percorraTor(toList)),tree.sumAll(toList)))
-    """
-    x = getLyrics('pink floyd',"paintbox")
-    print(getBandSongs('foo fighters'))
-    print(x);
-    """
+    DW.xlsxWriter(data1, data2, "amnesiacu")
+    print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(data1),tree.sumAll(data1)))
+    
