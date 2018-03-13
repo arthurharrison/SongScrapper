@@ -3,8 +3,8 @@ import xlsxwriter
 def xlsxWriter(data1, data2 , path):
 	data = ()
 	if(len(data2) != 0 ):
-		for i in range(len(data1)):
-			data += ([data1[i],str(data2[i])],)
+		for i, word in enumerate(data1):
+			data += ([word, str(data2[i])],)
 	else:
 		raise NameError('Error in the Parameters of the function')	
 

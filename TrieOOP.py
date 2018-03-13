@@ -1,12 +1,5 @@
 import re
 class TreeTrie:
-    #---------------
-    #Developer Observation:
-    #CurrentDict = the variable that is going to get in the Dictonary and explore every branch of it
-    #progLetter = is the Progression of the word, it starts with the first letter and in the end will be the whole word
-    #TODO: only happines (?)
-    #--------------
-
     """This Class is a TreeTrie (as the name says)
 
         You can Enter with as many words as you want or even with none, and it will create a Tree on your given object
@@ -100,18 +93,18 @@ class TreeTrie:
         aux = list(trie) 
         tete = ''
         
-        for i in range(len(aux)):
+        for i in aux:
             if(len(aux) == 1 and 'value' in aux):
                 continue
             if('value' in aux):#if it encounters a 'word' it resets the counter
                 tete = ''
 
-            tete = aux[i]
+            tete = i
             self.list.append(tete)
 
-            if(type(trie[aux[i]]) == int):
+            if(type(trie[i]) == int):
                 continue
-            self.percorra(trie[aux[i]])
+            self.percorra(trie[i])
         
         return self.list
 
@@ -125,11 +118,11 @@ class TreeTrie:
         wordList = []
         while 'value' in lista:
             lista.remove('value')
-        for i in range(len(lista)):
-            if(self.inTrie(lista[i])):
-                if(lista[i] in wordList):
+        for i in lista:
+            if(self.inTrie(i)):
+                if(i in wordList):
                     continue
-                wordList.append(lista[i])
+                wordList.append(i)
 
         return wordList
 
@@ -184,9 +177,9 @@ class TreeTrie:
         Observation: Remember to compare with the entry list, because it save only the values
         """
         listona = []
-        for i in range(len(lista)):
-            if(self.inTrie(lista[i])):
-                listona.append(self.getDataVal(lista[i]))
+        for i in lista:
+            if(self.inTrie(i)):
+                listona.append(self.getDataVal(i))
         return listona
 
     def sumAll(self, lista):
@@ -199,10 +192,10 @@ class TreeTrie:
         """
         total = 0
         dumpList = []
-        for i in range(len(lista)):
-            if(self.inTrie(lista[i]) and lista[i] not in dumpList):
-                total += self.getDataVal(lista[i])
-                dumpList.append(lista[i])
+        for i in lista:
+            if(self.inTrie(i) and i not in dumpList):
+                total += self.getDataVal(i)
+                dumpList.append(i)
         return total
 
 
