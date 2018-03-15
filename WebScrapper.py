@@ -86,6 +86,41 @@ def getBandSongs(artist):
         return "Exception occurred \n" + str(e)
 
 
+def getAlbumSongs(band, album):
+    """ Given the Artist and album you will get all songs from the album given
+
+    Args: Band name and Album
+
+    Return: a List of Songs from the Album
+    """
+    band = band.lower()
+    if band.startswith("the "):
+        band = band[3:]
+
+    band = re.sub('[^A-Za-z0-9]+',"", band)
+
+    url = "http://www.azlyrics.com/"+band[0]+"/"+band+".html"
+
+    try:
+        content = UrlReq.urlopen(url).read()
+        soup = BS(content, 'html.parser')
+        songs = []
+        backbone = str(soup).lower()
+        backbone = backbone.split('<div id="listalbum">')[1]
+        backbone = backbone.split('album: <b>"%s"</b>'%album)[1]
+        backbone = backbone.split('</div>')[1]
+        backbone = backbone.split('<a id=')[0]
+        backbone = backbone.split('target="_blank">')[1:]
+        for i in backbone:
+            song = i.split('</a>')[0]
+            songs.append(song)
+            
+        return songs
+        
+    except Exception as e:
+        return "Exception occurred \n" + str(e)
+
+
 def getAllBandLyrics(band):
     listlyr = []
     counter = 1
@@ -94,8 +129,10 @@ def getAllBandLyrics(band):
         for song in songs:
             counter = counter + 1
             #I don't want to overrun the website, maybe later it would be better to find a new way.
-            if(counter % 12):
-                time.sleep(4)
+            if(not counter % 12):
+                time.sleep(10)
+            if(not counter % 20):
+                time.sleep(40)
 
             lyrics = getLyrics(band,song)
             listlyr.append(lyrics)
@@ -113,11 +150,14 @@ def passFunc(tree, band, *songs):
     Return: None, it just adds in the Tree Trie
     """
     counter = 1
-    for song in songs:
+    for i, song in enumerate(songs):
         counter = counter + 1
+        print('Scraping {0} --- Song {1} of {2}'.format(song, i+1, len(songs)))
         #I don't want to overrun the website, maybe later it would be better to find a new way.
-        if(counter % 12):
-            time.sleep(4)
+        if(not counter % 12):
+            time.sleep(10)
+        if(not counter % 20):
+            time.sleep(40)
         actualSong = getLyrics(band, song)
         actualSong = actualSong.split('\n')
         for x in actualSong:
@@ -142,10 +182,9 @@ def mainStarter(band, *songs):
 
 #Debugger
 if __name__ == "__main__":
-    mainStarter('radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
-            , 'I Might Be Wrong', 'Knives Out', 'Amnesiac / Morning Bell', 'Dollars And Cents', 'Like Spinning Plates', 'Life In A Glass House')
+    mainStarter('radiohead', *getAlbumSongs('radiohead', 'amnesiac'))
     data1 = tree.getData(tree)
     data2 = tree.getAll(data1)
-    DW.xlsxWriter(data1, data2, "amnesiacu")
+    DW.xlsxWriter(data1, data2, "amnesiac")
     print("-Tree Information-\nNumber of unique words: {0} \nTotal number of words: {1}".format(len(data1),tree.sumAll(data1)))
     

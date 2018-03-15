@@ -23,7 +23,7 @@ And here is another Word Cloud image from the words gathered from the album Amne
 - [x] Create things with the Data
 - [ ] Make the code more customable and easier for use
 - [ ] Make it automatic (maybe?)
-- [ ] Make a better console output (?)
+- [x] Make a better console output (?)
 - [ ] Conquer the World
 - [ ] Create a good Readme for this project
 
@@ -41,14 +41,26 @@ import WebScrapper as WS
 import TrieOOP
 import dataWriter as DW
 
-WS.mainStarter('radiohead','Packt Like Sardines In A Crushed Tin Box', 'Pyramid Song', 'Pull / Pulk Revolving Doors', 'You And Whose Army?'
-            , 'I Might Be Wrong', 'Knives Out', 'Amnesiac / Morning Bell', 'Dollars And Cents', 'Like Spinning Plates', 'Life In A Glass House')
+WS.mainStarter('radiohead', *getAlbumSongs('radiohead', 'amnesiac'))
 data1 = WS.tree.getData(WS.tree)
 data2 = WS.tree.getAll(data1)
 DW.xlsxWriter(data1, data2, "amnesiac")
 ```
+* It will print the following feedback:
+```shell
+Scraping packt like sardines in a crushed tin box --- Song 1 of 10
+Scraping pyramid song --- Song 2 of 10
+Scraping pull / pulk revolving doors --- Song 3 of 10
+Scraping you and whose army? --- Song 4 of 10
+Scraping i might be wrong --- Song 5 of 10
+Scraping knives out --- Song 6 of 10
+Scraping amnesiac / morning bell --- Song 7 of 10
+Scraping dollars and cents --- Song 8 of 10
+Scraping like spinning plates --- Song 9 of 10
+Scraping life in a glass house --- Song 10 of 10
+```
+
 * This is the example.py script, it will create a .xlsx file with the information gathered of the album Amnesiac.
-* I typed song by song of the album, but later I will make it easier to call an album.
 
 ### What we've learned
 * How to gather information directly from a WebSite (Web Scrap);
