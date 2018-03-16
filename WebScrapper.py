@@ -6,7 +6,7 @@ import time
 import dataWriter as DW
 
 
-def getLyrics(artist,songTitle, treatment = False ): #when treatment works make it true
+def getLyrics(artist,songTitle, treatment = True ): #when treatment works make it true
     """Given the artist and the song you will get the Lyrics of the song
 
     Args: Artist, Song Title
@@ -33,20 +33,22 @@ def getLyrics(artist,songTitle, treatment = False ): #when treatment works make 
         lyrics = lyrics.replace('<br>','').replace('</br>','').replace('</div>','').strip()
         if('<i>' in lyrics):
             lyrics = lyrics.replace('<i>','').replace('</i>','').strip()
-
+        lyrics = lyrics.lower()
+        print(lyrics)
+        print('\n\n'+ lyrics)
         #This Block of code isn't usable
-        #THIS DOESNT WORK, WHY???????????????????
-        if ('ive' in lyrics and treatment == True):
-            lyrics = re.sub(r'\bive\b','i have',lyrics)
-        if(treatment == True):
-            for y in range(len(notWanted)):
-                #editor = re.sub(r"\b%s\b" % s[0] , s[1], editor)
-                lyrics = re.sub(r"\b%s\b"%notWanted[y],'',lyrics)
-                print(len(notWanted),y)
-                #lyrics =lyrics.replace(notWanted[i],'').strip()
-        #WHY IT DOESNT WORK??????
-        #--------------
 
+        if ("i'm" in lyrics and treatment == True):
+            #print(len(lyrics))
+            lyrics = re.sub(r"\bi'm\b",'i am',lyrics)
+            #print(len(lyrics))
+        if(treatment == True):
+            for y in notWanted:
+                #print('\n\n\n'+len(lyrics))
+                #editor = re.sub(r"\b%s\b" % s[0] , s[1], editor)
+                lyrics = re.sub(r"\b%s\b"%y,'',lyrics)
+        #--------------
+        print(lyrics)
         return lyrics
     except Exception as e:
         return "Exception occurred \n" + str(e)
@@ -162,10 +164,11 @@ def passFunc(tree, band, *songs):
         actualSong = actualSong.split('\n')
         for x in actualSong:
             y = re.sub('[^A-Za-z ]',"",x)
+            print(y)
             y = y.split(' ')
             for y in y:
                 if y == '' or y == 'x': continue
-                tree.addTrie(y.lower())
+                tree.addTrie(y)
 
 def mainStarter(band, *songs):
     """ It makes the module easier to use and to call.
@@ -182,7 +185,8 @@ def mainStarter(band, *songs):
 
 #Debugger
 if __name__ == "__main__":
-    mainStarter('radiohead', *getAlbumSongs('radiohead', 'amnesiac'))
+    #mainStarter('radiohead', *getAlbumSongs('radiohead', 'amnesiac'))
+    mainStarter('radiohead', 'All I Need')
     data1 = tree.getData(tree)
     data2 = tree.getAll(data1)
     DW.xlsxWriter(data1, data2, "amnesiac")
