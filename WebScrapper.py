@@ -13,8 +13,9 @@ def getLyrics(artist,songTitle, treatment = True ): #when treatment works make i
 
     Return: Song Lyric
     """
-    notWanted = ['the','a','an','to','for','in','on','at'] #articles, prepositions -> words that are not usable in the analysis
-    #toChange = ['ive','youre'] #words that are actually two ; I don't know if i want to create a loop for this
+    notWanted = ['the','a','an','and','it','to','for','in','on','at','as', 'is', 'are'] #articles, prepositions -> words that are not usable in the analysis (Reconsider the words used)
+    toChange = ['ive','im','id','its','youre','youd','youll'] #words that are actually two ; I don't know if i want to create a loop for this
+    toChanged = ['i have', 'i am','i would','it is', 'you are','you would','you will']
     artist = artist.lower()
     songTitle = songTitle.lower()
     if artist.startswith("the "):
@@ -34,21 +35,14 @@ def getLyrics(artist,songTitle, treatment = True ): #when treatment works make i
         if('<i>' in lyrics):
             lyrics = lyrics.replace('<i>','').replace('</i>','').strip()
         lyrics = lyrics.lower()
-        print(lyrics)
-        print('\n\n'+ lyrics)
-        #This Block of code isn't usable
-
-        if ("i'm" in lyrics and treatment == True):
-            #print(len(lyrics))
-            lyrics = re.sub(r"\bi'm\b",'i am',lyrics)
-            #print(len(lyrics))
+        lyrics = re.sub('[^a-z\n ]+', "", lyrics)
+        
         if(treatment == True):
+            for i, word in enumerate(toChange):
+                lyrics = re.sub(r"\b%s\b"%word, toChanged[i], lyrics)
             for y in notWanted:
-                #print('\n\n\n'+len(lyrics))
-                #editor = re.sub(r"\b%s\b" % s[0] , s[1], editor)
                 lyrics = re.sub(r"\b%s\b"%y,'',lyrics)
-        #--------------
-        print(lyrics)
+
         return lyrics
     except Exception as e:
         return "Exception occurred \n" + str(e)
@@ -162,13 +156,13 @@ def passFunc(tree, band, *songs):
             time.sleep(40)
         actualSong = getLyrics(band, song)
         actualSong = actualSong.split('\n')
+        
         for x in actualSong:
-            y = re.sub('[^A-Za-z ]',"",x)
-            print(y)
-            y = y.split(' ')
+            y = x.split(' ')
             for y in y:
                 if y == '' or y == 'x': continue
                 tree.addTrie(y)
+        
 
 def mainStarter(band, *songs):
     """ It makes the module easier to use and to call.
@@ -185,8 +179,7 @@ def mainStarter(band, *songs):
 
 #Debugger
 if __name__ == "__main__":
-    #mainStarter('radiohead', *getAlbumSongs('radiohead', 'amnesiac'))
-    mainStarter('radiohead', 'All I Need')
+    mainStarter('radiohead', *getAlbumSongs('radiohead', 'amnesiac'))
     data1 = tree.getData(tree)
     data2 = tree.getAll(data1)
     DW.xlsxWriter(data1, data2, "amnesiac")
