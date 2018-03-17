@@ -13,9 +13,9 @@ def getLyrics(artist,songTitle, treatment = True ): #when treatment works make i
 
     Return: Song Lyric
     """
-    notWanted = ['the','a','an','and','it','to','for','in','on','at','as', 'is', 'are'] #articles, prepositions -> words that are not usable in the analysis (Reconsider the words used)
-    toChange = ['ive','im','id','its','youre','youd','youll'] #words that are actually two ; I don't know if i want to create a loop for this
-    toChanged = ['i have', 'i am','i would','it is', 'you are','you would','you will']
+    notWanted = ['the','a','an','and','it','to','for','in','on','of','at','as', 'is', 'are'] #articles, prepositions -> words that are not usable in the analysis (Reconsider the words used)
+    toChange = ['ive','im','id','its','youre','youd','youll','shes','hes','itll'] #words that are actually two ; I don't know if i want to create a loop for this
+    toChanged = ['i have', 'i am','i would','it is', 'you are','you would','you will','she is', 'he is', 'it will']
     artist = artist.lower()
     songTitle = songTitle.lower()
     if artist.startswith("the "):
