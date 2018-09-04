@@ -89,6 +89,7 @@ def getAlbumSongs(band, album):
 
     Return: a List of Songs from the Album
     """
+    album = album.lower()
     band = band.lower()
     if band.startswith("the "):
         band = band[3:]

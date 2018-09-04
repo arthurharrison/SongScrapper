@@ -1,12 +1,12 @@
 <p align="center">
   <h1 align="center">SongScrapper</h1>
-  <p  align="center">A WebScrapper but with your favorite band songs.</p>
+  <p  align="center">A WebScrapper but with your favorite band songs</p>
 </p>
 
 ### What is it? 
 * My first published project :')
-* A Code that collect the lyrics from a website and writes in a .xlsx file the word and the number the times it shows
-* It also uses Tree Trie Data Structure, so it can be harvested into another project in case you need this kind of Data Structure
+* A Code that collect the lyrics from a website and writes in a .xlsx file the word and the number of times it shows;
+* It also uses Tree Trie Data Structure, so you can use it into another project in case you need this kind of Data Structure.
 
 Here's what I was able to do with the Data and the help of [Tableau](https://tableau.com) for visualiation purposes.
 
@@ -29,11 +29,11 @@ And here is another Word Cloud image from the words gathered from the album Amne
 
 ### How does it work?
 The 3 Scripts that I used will gather the Data, deal with the Data and write the Data.
-* WebScrapper module gets the data;
-* TrieOOP is the Data Structure, it will save the data has a Tree and make it ready and easy to use for what you need;
-* dataWriter will get the Data from TrieOOP and write it in a .xlsx file with two rows (Word and Value).
+* WebScrapper.py module gets the data;
+* TrieOOP.py is the Data Structure, it will save the data has a Tree and make it ready and easy to use for what you need;
+* dataWriter.py will get the Data from TrieOOP and write it in a .xlsx file with two rows (Word and Value).
 
-You can find more information in the documetation of the Code.
+You can find more information in the documentation of the Code.
 
 ### Examples
 ```python

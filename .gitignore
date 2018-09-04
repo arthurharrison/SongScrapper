@@ -1,5 +1,6 @@
 __pycache__/
 oldcode/
+pinkfloyddown.py
 *.sublime-workspace
 *.json
 *.xlsx
