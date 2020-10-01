@@ -1,6 +1,7 @@
 <p align="center">
   <h1 align="center">SongScrapper</h1>
-  <p  align="center">A WebScrapper but with your favorite band songs</p>
+  <p  align="center">A WebScrapper for your favourite bands</p>
+  <p align="center">Join explore & Fun</p>
 </p>
 
 ### What is it? 
